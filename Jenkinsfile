@@ -15,7 +15,8 @@ pipeline{
         }
         stage('build'){
             steps{
-               bat 'mvn package'
+               bat 'mvn package' 
+               sh 'docker --version'
             }
         }
                  

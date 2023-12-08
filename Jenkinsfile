@@ -30,7 +30,7 @@ pipeline{
             steps{
                // withCredentials([string(credentialsId: 'dockerhub', variable: 'dockpwd')]) {
 		withCredentials([string(credentialsId: 'dockerhub', variable: 'docpd')]) {
-                sh 'docker  login -u yoginayak1@gmail.com -p Guru@7760'
+                sh 'docker  login -u yoginayak1@gmail.com -p Guru@7760' docker.io
                 sh 'docker push dockermaven/maven-integration'
                 }
      

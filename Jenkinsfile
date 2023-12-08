@@ -15,6 +15,24 @@ pipeline{
         }
         stage('build'){
             steps{
+               bat 'mvn package' 
             }
-        }             
+        } 
+
+       stage('build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t dockermaven/maven-integration .'
+                }
+            }
+       }
+        
+        stage('push dockerhub'){
+            steps{
+                withCredentials([string(credentialsId: 'dockerhub', variable: 'dockpwd')]) {
+                sh 'docker  login -u yogi7760 -p ${dockpwd}'
+                sh 'docker push dockermaven/maven-integration'
+     
+    }
 }
+              

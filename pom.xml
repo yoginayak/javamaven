@@ -47,5 +47,6 @@
                 </executions>
             </plugin>
         </plugins>
+        <finalName>maven-integration</finalName>
     </build>
 </project>

@@ -32,7 +32,11 @@ pipeline{
                 withCredentials([string(credentialsId: 'dockerhub', variable: 'dockpwd')]) {
                 sh 'docker  login -u yogi7760 -p ${dockpwd}'
                 sh 'docker push dockermaven/maven-integration'
+                }
      
+            }
+        }
+ 
     }
+	
 }
-              

@@ -28,8 +28,9 @@ pipeline{
         
         stage('push dockerhub'){
             steps{
-                withCredentials([string(credentialsId: 'dockerhub', variable: 'dockpwd')]) {
-                sh 'docker  login -u yogi7760 -p ${dockpwd}'
+               // withCredentials([string(credentialsId: 'dockerhub', variable: 'dockpwd')]) {
+		withCredentials([string(credentialsId: 'dockerhub', variable: 'docpd')]) {
+                sh 'docker  login -u yoginayak1@gmail.com -p ${dockpwd}'
                 sh 'docker push dockermaven/maven-integration'
                 }
      

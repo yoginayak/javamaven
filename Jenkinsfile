@@ -1,6 +1,13 @@
 pipeline{
     agent any
 
+    environment {
+        DOCKERHUB_CREDENTIALS = 'your-dockerhub-credentials-id'
+        DOCKERHUB_USERNAME = 'your-dockerhub-username'
+        DOCKERHUB_REPOSITORY = 'your-dockerhub-repository'
+        DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}"
+    }
+
     tools {
          maven 'Maven'
     }
@@ -31,7 +38,7 @@ pipeline{
                // withCredentials([string(credentialsId: 'dockerhub', variable: 'dockpwd')]) {
 		withCredentials([string(credentialsId: 'dockerhub', variable: 'docpd')]) {
                 sh 'docker  login -u yoginayak1@gmail.com -p Guru@7760 docker.io'
-                sh 'docker push dockermaven/maven-integration'
+                sh 'docker push yogi7760/dockermaven/maven-integration'
                 }
      
             }

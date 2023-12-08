@@ -18,5 +18,10 @@ pipeline{
                bat 'mvn package'
             }
         }
+        stage('build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t dockermaven/maven-integration .'
+            
     }
 }

@@ -1,6 +1,14 @@
 pipeline{
     agent any
 
+     environment {
+        AWS_ACCOUNT_ID="664334749222"
+        AWS_DEFAULT_REGION="eu-north-1"
+        IMAGE_REPO_NAME="jenkins-docker-ecr-demo"
+        IMAGE_TAG="latest"
+        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+    }
+
     tools {
          maven 'Maven'
     }
@@ -25,6 +33,7 @@ pipeline{
                 }
             }
        }
+	
         
         stage('push dockerhub'){
             steps{
@@ -38,6 +47,24 @@ pipeline{
      
             }
         }
+	    
+	 stage('Logging into AWS ECR') {
+            steps {
+                script {
+                sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+                }
+                 
+            }
+        }
+	 // Uploading Docker images into AWS ECR
+         stage('Pushing to ECR') {
+             steps{  
+                 script {
+                     sh "docker tag dockermaven/maven-integration ${REPOSITORY_URI}:dockermaven/maven-integration"
+                     sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:dockermaven/maven-integration"
+                 }
+             }
+       }
  
     }
 	

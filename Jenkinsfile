@@ -5,7 +5,7 @@ pipeline{
         AWS_ACCOUNT_ID="664334749222"
         AWS_DEFAULT_REGION="eu-north-1"
         IMAGE_REPO_NAME="dockermaven"
-        IMAGE_TAG="latest"
+        IMAGE_TAG="v1"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }
 
@@ -60,8 +60,8 @@ pipeline{
          stage('Pushing to ECR') {
              steps{  
                  script {
-                     sh "docker tag dockermaven/maven-integration:latest ${REPOSITORY_URI}:latest"
-                     sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest"
+                     sh "docker tag dockermaven/maven-integration:latest ${REPOSITORY_URI}:${IMAGE_TAG}"
+                     sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
                  }
              }
        }

@@ -60,7 +60,7 @@ pipeline{
          stage('Pushing to ECR') {
              steps{  
                  script {
-                     sh "docker tag dockermaven/maven-integration:latest ${REPOSITORY_URI}/dockermaven:latest"
+                     sh "docker tag dockermaven/maven-integration:latest ${REPOSITORY_URI}:latest"
                      sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest"
                  }
              }

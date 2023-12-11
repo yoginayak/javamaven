@@ -4,7 +4,7 @@ pipeline{
      environment {
         AWS_ACCOUNT_ID="664334749222"
         AWS_DEFAULT_REGION="eu-north-1"
-        IMAGE_REPO_NAME="jenkins-docker-ecr-demo"
+        IMAGE_REPO_NAME="dockermaven"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
     }

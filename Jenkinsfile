@@ -40,8 +40,8 @@ pipeline{
                // withCredentials([string(credentialsId: 'dockerhub', variable: 'dockpwd')]) {
 		withCredentials([string(credentialsId: 'dockerhub', variable: 'docpd')]) {
                 sh 'docker  login -u yoginayak1@gmail.com -p Guru@7760 docker.io'
-		sh 'docker tag dockermaven/maven-integration yogi7760/dockerhub:mythirdimagepush'
-		sh 'docker push yogi7760/dockerhub:mythirdimagepush'
+		sh 'docker tag dockermaven/maven-integration yogi7760/dockerhub:mylastimagepush'
+		sh 'docker push yogi7760/dockerhub:mylastimagepush'
                 //sh 'docker push yogi7760/dockermaven/maven-integration'
                 }
      
